@@ -18,7 +18,7 @@ if (isset($_POST, $_POST['taskPriority'], $_POST['taskDescription'], $_POST['tas
             $inbase = $taskProvider->setUpdateTask($_SESSION['taskId'], $newTaskDescription, $newTaskPriority, $newTaskDeadline, $newTaskDone);
         }
         else{
-            $inbase = $taskProvider->setAddTask($newTaskDescription, $newTaskPriority, $newTaskDeadline, '');
+            $inbase = $taskProvider->setAddTask($newTaskDescription, $newTaskPriority, $newTaskDeadline, $newTaskDone);
         }
         unset($_SESSION['taskId']);
         if(isset($inbase)){
