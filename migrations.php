@@ -21,6 +21,14 @@ $pdo->exec('CREATE TABLE users (
     comment text DEFAULT NULL
 )');
 
+$pdo->exec('INSERT INTO users ( uuid, login, name, email, password ) 
+                                VALUES ( "6ebbfaaf-f9a2-49fc-82ba-361d6d92fdc4",
+                                        "admin",
+                                        "vasya",
+                                        "vasya@mail.ru",
+                                        "202cb962ac59075b964b07152d234b70") ');
+
+
 $pdo->exec('DROP TABLE IF EXISTS roles;
 ');
 

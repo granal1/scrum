@@ -13,19 +13,20 @@ class TaskProvider
 
     public function getAllTasks(string $user_id): ?array
     {
-        $statement = $this->pdo->prepare(
-            'SELECT * 
-            FROM `tasks` 
-            WHERE user_id = :user_id'
-        );
-        $statement->execute([
-            'user_id' => $user_id
-        ]);
-        $result = [];
-        while($row = $statement->fetchObject(Task::class, [$user_id])){
-            $result[] = $row;
-        }
-        return $result ?: null;
+//        $statement = $this->pdo->prepare(
+//            'SELECT *
+//            FROM `tasks`
+//            WHERE user_id = :user_id'
+//        );
+//        $statement->execute([
+//            'user_id' => $user_id
+//        ]);
+//        $result = [];
+//        while($row = $statement->fetchObject(Task::class, [$user_id])){
+//            $result[] = $row;
+//        }
+//        return $result ?: null;
+        return null;
     }
   
     public function getOneTask(string $user_id, string $id): ?Task
@@ -46,21 +47,22 @@ class TaskProvider
 
     public function getUndoneTasks(string $user_id): ?array
     {
-        $statement = $this->pdo->prepare(
-            'SELECT * 
-            FROM tasks 
-            WHERE `user_id` = :user_id
-            AND `task_done` < :task_done'
-        );
-        $statement->execute([
-            'user_id' => $user_id,
-            'task_done' => 100
-        ]);
-        $result = [];
-        while($row = $statement->fetchObject(Task::class, [$user_id])){
-            $result[] = $row;
-        }
-        return $result ?: null;
+//        $statement = $this->pdo->prepare(
+//            'SELECT *
+//            FROM tasks
+//            WHERE `user_id` = :user_id
+//            AND `task_done` < :task_done'
+//        );
+//        $statement->execute([
+//            'user_id' => $user_id,
+//            'task_done' => 100
+//        ]);
+//        $result = [];
+//        while($row = $statement->fetchObject(Task::class, [$user_id])){
+//            $result[] = $row;
+//        }
+//        return $result ?: null;
+        return null;
     }
 
     public function setIsDone(string $id)
