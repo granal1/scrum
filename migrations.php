@@ -10,7 +10,7 @@ $pdo->exec('DROP TABLE IF EXISTS users;
 ');
 
 $pdo->exec('CREATE TABLE users (
-    uuid VARCHAR(255) PRIMARY KEY NOT NULL,
+    uuid VARCHAR(36) PRIMARY KEY NOT NULL,
     login VARCHAR(100) NOT NULL unique,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) not null,
@@ -33,7 +33,7 @@ $pdo->exec('DROP TABLE IF EXISTS roles;
 ');
 
 $pdo->exec('CREATE TABLE roles (
-    uuid VARCHAR(255) PRIMARY KEY NOT NULL,
+    uuid VARCHAR(36) PRIMARY KEY NOT NULL,
     name VARCHAR(100) NOT NULL unique,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT NULL,
@@ -48,9 +48,9 @@ $pdo->exec('INSERT INTO roles ( uuid, name )
 $pdo->exec('DROP TABLE IF EXISTS user_role;');
 
 $pdo->exec('CREATE TABLE user_role (
-    uuid VARCHAR(255) PRIMARY KEY NOT NULL,
-    user_id VARCHAR(255) NOT NULL,
-    role_id VARCHAR(255) NOT NULL,
+    uuid VARCHAR(36) PRIMARY KEY NOT NULL,
+    user_id VARCHAR(36) NOT NULL,
+    role_id VARCHAR(36) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT NULL,
     deleted_at TIMESTAMP DEFAULT NULL,
@@ -63,10 +63,10 @@ $pdo->exec('CREATE TABLE user_role (
 $pdo->exec('DROP TABLE IF EXISTS user_subordinate;');
 
 $pdo->exec('CREATE TABLE user_subordinate (
-    uuid VARCHAR(255) PRIMARY KEY NOT NULL,
-    user_id VARCHAR(255) NOT NULL,
-    chief_id VARCHAR(255) NOT NULL,
-    confidant_id VARCHAR(255) DEFAULT NULL,
+    uuid VARCHAR(36) PRIMARY KEY NOT NULL,
+    user_id VARCHAR(36) NOT NULL,
+    chief_id VARCHAR(36) NOT NULL,
+    confidant_id VARCHAR(36) DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT NULL,
     deleted_at TIMESTAMP DEFAULT NULL,
@@ -85,7 +85,7 @@ $pdo->exec('DROP TABLE IF EXISTS files;
 ');
 
 $pdo->exec('CREATE TABLE files (
-    uuid VARCHAR(255) PRIMARY KEY NOT NULL,
+    uuid VARCHAR(36) PRIMARY KEY NOT NULL,
     name VARCHAR(255) NOT NULL,
     path VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -103,7 +103,7 @@ $pdo->exec('DROP TABLE IF EXISTS task_priorities;
 ');
 
 $pdo->exec('CREATE TABLE task_priorities (
-    uuid VARCHAR(255) PRIMARY KEY NOT NULL,
+    uuid VARCHAR(36) PRIMARY KEY NOT NULL,
     name VARCHAR(100) NOT NULL UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT NULL,
@@ -131,7 +131,7 @@ $pdo->exec('DROP TABLE IF EXISTS tasks;
 ');
 
 $pdo->exec('CREATE TABLE tasks (
-    uuid VARCHAR(255) PRIMARY KEY NOT NULL,
+    uuid VARCHAR(36) PRIMARY KEY NOT NULL,
     description text NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT NULL,
@@ -144,12 +144,12 @@ $pdo->exec('DROP TABLE IF EXISTS task_histories;
 ');
 
 $pdo->exec('CREATE TABLE task_histories (
-    uuid VARCHAR(255) PRIMARY KEY NOT NULL,
-    priority_id VARCHAR(255) NOT NULL,
-    parent_id VARCHAR(255) DEFAULT NULL,
-    task_id VARCHAR(255) NOT NULL,
-    user_id VARCHAR(255) NOT NULL,
-    responsible_id VARCHAR(255) NOT NULL,
+    uuid VARCHAR(36) PRIMARY KEY NOT NULL,
+    priority_id VARCHAR(36) NOT NULL,
+    parent_id VARCHAR(36) DEFAULT NULL,
+    task_id VARCHAR(36) NOT NULL,
+    user_id VARCHAR(36) NOT NULL,
+    responsible_id VARCHAR(36) NOT NULL,
     done_progress INTEGER DEFAULT NULL,
     deadline_at TIMESTAMP NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -168,9 +168,9 @@ $pdo->exec('DROP TABLE IF EXISTS task_files;
 ');
 
 $pdo->exec('CREATE TABLE task_files (
-    uuid VARCHAR(255) PRIMARY KEY NOT NULL,
-    task_id VARCHAR(255) NOT NULL,
-    file_id VARCHAR(255) NOT NULL,
+    uuid VARCHAR(36) PRIMARY KEY NOT NULL,
+    task_id VARCHAR(36) NOT NULL,
+    file_id VARCHAR(36) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT NULL,
     deleted_at TIMESTAMP DEFAULT NULL,
