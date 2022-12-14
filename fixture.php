@@ -48,3 +48,23 @@ $pdo->exec('CREATE TABLE user_role (
     FOREIGN KEY(user_id) REFERENCES users(uuid),
     FOREIGN KEY(role_id) REFERENCES roles(uuid)
 )');
+
+$pdo->exec('DROP TABLE IF EXISTS user_role;
+');
+
+$pdo->exec('CREATE TABLE user_subordinate (
+    uuid varchar(255) primary key not NULL,
+    user_id varchar(255) not NULL,
+    chief_id varchar(255) not NULL,
+    confidant_id varchar(255) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp DEFAULT NULL,
+    deleted_at timestamp DEFAULT NULL,
+    comment text DEFAULT NULL,
+    sort_order INTEGER DEFAULT 1,
+    FOREIGN KEY(user_id) REFERENCES users(uuid),
+    FOREIGN KEY(chief_id) REFERENCES users(uuid),
+    FOREIGN KEY(confidant_id) REFERENCES users(uuid)
+)');
+
+
