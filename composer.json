@@ -1,0 +1,5 @@
+{
+    "require": {
+        "symfony/polyfill-uuid": "^1.27"
+    }
+}
