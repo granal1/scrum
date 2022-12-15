@@ -110,8 +110,6 @@
 
 
     </div> -->
-    <br>
-    </div>
     <script src="../bootstrap/bootstrap.min.js"></script>
 </body>
 
