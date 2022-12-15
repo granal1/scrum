@@ -34,7 +34,8 @@
             <div class="mb-3">
                 <div class="col-11 col-xs-10 col-sm-10 col-md-10 mx-auto">
                     <label for="chief_uuid" class="form-label">Мой руководитель</label>
-                    <select required name="chief_uuid" class="form-select form-select-sm">
+                    <select name="chief_uuid" class="form-select form-select-sm">
+                        <option value="">Выберите ...</option>
                         <option value="">Иванов И.И.</option>
                         <option value="">Петров П.П.</option>
                         <option value="">Сидоров С.С.</option>
@@ -45,7 +46,8 @@
                 <div class="col-11 col-xs-10 col-sm-10 col-md-10 mx-auto">
                     <label for="confidant_uuid" class="form-label">Мои подчиненные</label>
                     <div class="input-group">
-                    <select required name="confidant_uuid[]" class="form-select form-select-sm">
+                    <select name="confidant_uuid[]" class="form-select form-select-sm">
+                        <option value="">Выберите ...</option>
                         <option value="">Иванов И.И.</option>
                         <option value="">Петров П.П.</option>
                         <option value="">Сидоров С.С.</option>
