@@ -6,7 +6,7 @@ $username = $_SESSION['user']->getUsername() ?? null;
 
 //получение незавершенных задач
 $taskProvider = new TaskProvider($pdo);
-$tasks = $taskProvider->getUndoneTasks($_SESSION['user']->getId());
+$tasks = $taskProvider->getUndoneTasks($_SESSION['user']->getUuid());
 
 if ($tasks === null) {
     $_SESSION['tasks'] = [];

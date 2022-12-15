@@ -1,6 +1,12 @@
 <?php
+
+//namespace granal1\scrum\controller;
+
+// use granal1\scrum\model\UserProvider;
+
 require_once 'model/UserProvider.php';
 $pdo = require 'db.php';
+
 
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     session_destroy();
