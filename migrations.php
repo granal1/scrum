@@ -28,6 +28,20 @@ $pdo->exec('INSERT INTO users ( uuid, login, name, email, password )
                                         "vasya@mail.ru",
                                         "202cb962ac59075b964b07152d234b70") ');
 
+$pdo->exec('INSERT INTO users ( uuid, login, name, email, password ) 
+                                VALUES ( "8dd4c075-c186-469d-9927-987470c1afbc",
+                                        "boss",
+                                        "volodya",
+                                        "volodya@mail.ru",
+                                        "202cb962ac59075b964b07152d234b70") ');
+
+$pdo->exec('INSERT INTO users ( uuid, login, name, email, password ) 
+                                VALUES ( "f189c649-7b71-4e2b-834c-f7bfa952c71a",
+                                        "kadr",
+                                        "masha",
+                                        "masha@mail.ru",
+                                        "202cb962ac59075b964b07152d234b70") ');
+
 
 $pdo->exec('DROP TABLE IF EXISTS roles;
 ');
