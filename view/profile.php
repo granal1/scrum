@@ -1,13 +1,11 @@
 <!doctype html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Профиль</title>
     <link href="../bootstrap/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
 <div class="container-fluid d-flex align-items-center pt-3 pt-lg-0 pb-5 pb-lg-0">
     <div class="container pb-4">
@@ -46,11 +44,16 @@
             <div class="mb-3">
                 <div class="col-11 col-xs-10 col-sm-10 col-md-10 mx-auto">
                     <label for="confidant_uuid" class="form-label">Мои подчиненные</label>
+                    <div class="input-group">
                     <select required name="confidant_uuid[]" class="form-select form-select-sm">
                         <option value="">Иванов И.И.</option>
                         <option value="">Петров П.П.</option>
                         <option value="">Сидоров С.С.</option>
                     </select>
+                    <button type="button" class="add-act-work ps-2" style="border: none; background-color: transparent;">
+                        <img src="../icons/add.svg" class="rounded" alt="Add work" height="35" width="35" title="Добавить подчиненного">
+                    </button>
+                    </div>
                 </div>
             </div>
             <div class="mb-3">
