@@ -41,7 +41,6 @@
     </div>
     <br>
     <p>Например:<br>
-    admin, 123<br>
     ivan, 123</p>
 </div>
 </body>
