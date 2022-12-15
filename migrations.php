@@ -49,32 +49,32 @@ $pdo->exec('DROP TABLE IF EXISTS user_role;');
 
 $pdo->exec('CREATE TABLE user_role (
     uuid VARCHAR(36) PRIMARY KEY NOT NULL,
-    user_id VARCHAR(36) NOT NULL,
-    role_id VARCHAR(36) NOT NULL,
+    user_uuid VARCHAR(36) NOT NULL,
+    role_uuid VARCHAR(36) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT NULL,
     deleted_at TIMESTAMP DEFAULT NULL,
     comment text DEFAULT NULL,
     sort_order INTEGER DEFAULT 1,
-    FOREIGN KEY(user_id) REFERENCES users(uuid),
-    FOREIGN KEY(role_id) REFERENCES roles(uuid)
+    FOREIGN KEY(user_uuid) REFERENCES users(uuid),
+    FOREIGN KEY(role_uuid) REFERENCES roles(uuid)
 )');
 
 $pdo->exec('DROP TABLE IF EXISTS user_subordinate;');
 
 $pdo->exec('CREATE TABLE user_subordinate (
     uuid VARCHAR(36) PRIMARY KEY NOT NULL,
-    user_id VARCHAR(36) NOT NULL,
-    chief_id VARCHAR(36) NOT NULL,
-    confidant_id VARCHAR(36) DEFAULT NULL,
+    user_uuid VARCHAR(36) NOT NULL,
+    chief_uuid VARCHAR(36) NOT NULL,
+    confidant_uuid VARCHAR(36) DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT NULL,
     deleted_at TIMESTAMP DEFAULT NULL,
     comment text DEFAULT NULL,
     sort_order INTEGER DEFAULT 1,
-    FOREIGN KEY(user_id) REFERENCES users(uuid),
-    FOREIGN KEY(chief_id) REFERENCES users(uuid),
-    FOREIGN KEY(confidant_id) REFERENCES users(uuid)
+    FOREIGN KEY(user_uuid) REFERENCES users(uuid),
+    FOREIGN KEY(chief_uuid) REFERENCES users(uuid),
+    FOREIGN KEY(confidant_uuid) REFERENCES users(uuid)
 )');
 
 //==================================================
@@ -145,11 +145,11 @@ $pdo->exec('DROP TABLE IF EXISTS task_histories;
 
 $pdo->exec('CREATE TABLE task_histories (
     uuid VARCHAR(36) PRIMARY KEY NOT NULL,
-    priority_id VARCHAR(36) NOT NULL,
-    parent_id VARCHAR(36) DEFAULT NULL,
-    task_id VARCHAR(36) NOT NULL,
-    user_id VARCHAR(36) NOT NULL,
-    responsible_id VARCHAR(36) NOT NULL,
+    priority_uuid VARCHAR(36) NOT NULL,
+    parent_uuid VARCHAR(36) DEFAULT NULL,
+    task_uuid VARCHAR(36) NOT NULL,
+    user_uuid VARCHAR(36) NOT NULL,
+    responsible_uuid VARCHAR(36) NOT NULL,
     done_progress INTEGER DEFAULT NULL,
     deadline_at TIMESTAMP NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -157,11 +157,11 @@ $pdo->exec('CREATE TABLE task_histories (
     deleted_at TIMESTAMP DEFAULT NULL,
     comment text DEFAULT NULL,
     sort_order INTEGER DEFAULT 1,
-    FOREIGN KEY(task_id) REFERENCES tasks(uuid),
-    FOREIGN KEY(priority_id) REFERENCES task_priorities(uuid),
-    FOREIGN KEY(user_id) REFERENCES users(uuid),
-    FOREIGN KEY(responsible_id) REFERENCES users(uuid),
-    FOREIGN KEY(parent_id) REFERENCES tasks(uuid)
+    FOREIGN KEY(task_uuid) REFERENCES tasks(uuid),
+    FOREIGN KEY(priority_uuid) REFERENCES task_priorities(uuid),
+    FOREIGN KEY(user_uuid) REFERENCES users(uuid),
+    FOREIGN KEY(responsible_uuid) REFERENCES users(uuid),
+    FOREIGN KEY(parent_uuid) REFERENCES tasks(uuid)
 )');
 
 $pdo->exec('DROP TABLE IF EXISTS task_files;
@@ -169,15 +169,15 @@ $pdo->exec('DROP TABLE IF EXISTS task_files;
 
 $pdo->exec('CREATE TABLE task_files (
     uuid VARCHAR(36) PRIMARY KEY NOT NULL,
-    task_id VARCHAR(36) NOT NULL,
-    file_id VARCHAR(36) NOT NULL,
+    task_uuid VARCHAR(36) NOT NULL,
+    file_uuid VARCHAR(36) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT NULL,
     deleted_at TIMESTAMP DEFAULT NULL,
     comment text DEFAULT NULL,
     sort_order INTEGER DEFAULT 1,
-    FOREIGN KEY(task_id) REFERENCES tasks(uuid),
-    FOREIGN KEY(file_id) REFERENCES files(uuid)
+    FOREIGN KEY(task_uuid) REFERENCES tasks(uuid),
+    FOREIGN KEY(file_uuid) REFERENCES files(uuid)
 )');
 
 
