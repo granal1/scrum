@@ -2,43 +2,43 @@
 
 use Symfony\Polyfill\Uuid\Uuid;
 
-require_once 'model/TaskProvider.php';
-require_once 'vendor/symfony/polyfill-uuid/Uuid.php';
+require_once ROOT . '/model/TaskProvider.php';
+require_once ROOT . '/vendor/symfony/polyfill-uuid/Uuid.php';
 
 $taskProvider = new TaskProvider($pdo);
 
 
-if (isset($_POST, $_POST['taskPriority'], $_POST['taskDescription'], $_POST['taskDeadline'])){
-    if ($_POST['taskDescription'] != '' 
-        && $_POST['taskPriority'] != '' 
+if (isset($_POST, $_POST['taskPriority'], $_POST['taskDescription'], $_POST['taskDeadline'])) {
+    if (
+        $_POST['taskDescription'] != ''
+        && $_POST['taskPriority'] != ''
         && $_POST['taskDeadline'] != ''
-        && $_POST['taskDone'] != ''){
-        
+        && $_POST['taskDone'] != ''
+    ) {
+
         $newTaskUuid = Uuid::uuid_create();
         $newTaskDescription = htmlspecialchars(strip_tags($_POST['taskDescription']));
         $newTaskPriority = htmlspecialchars(strip_tags($_POST['taskPriority']));
         $newTaskDeadline = htmlspecialchars(strip_tags($_POST['taskDeadline']));
         $newTaskDone = $_POST['taskDone'];
-        
-        if (isset($_SESSION['taskUuid'])){
+
+        if (isset($_SESSION['taskUuid'])) {
             $inbase = $taskProvider->setUpdateTask($_SESSION['taskUuid'], $newTaskDescription, $newTaskPriority, $newTaskDeadline, $newTaskDone);
-        }
-        else{
+        } else {
             $inbase = $taskProvider->setAddTask($newTaskUuid, $newTaskDescription, $newTaskPriority, $newTaskDeadline, $newTaskDone);
         }
         unset($_SESSION['taskUuid']);
-        if(isset($inbase)){
+        if (isset($inbase)) {
             $message = 'Сохранено';
             $task = $taskProvider->getOneTask($_SESSION['user']->getUuid(), $inbase);
             $_SESSION['taskUuid'] = isset($task) ? $task->getUuid() : '';
         }
     }
-}
-else{
+} else {
     unset($_SESSION['taskUuid']);
 }
 
-if (isset($_GET, $_GET['action'])){
+if (isset($_GET, $_GET['action'])) {
     $taskUuid = $_SESSION['tasks'][$_GET['action']]->getUuid();
     $task = $taskProvider->getOneTask($_SESSION['user']->getUuid(), $taskUuid);
     $_SESSION['taskUuid'] = isset($task) ? $task->getUuid() : '';

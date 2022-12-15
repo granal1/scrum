@@ -2,7 +2,7 @@
 
 use Symfony\Polyfill\Uuid\Uuid;
 
-$pdo = require 'db.php';
+$pdo = require ROOT . '/db.php';
 
 class TaskProvider
 {
@@ -24,12 +24,12 @@ class TaskProvider
             'user_uuid' => $user_uuid
         ]);
         $result = [];
-        while($row = $statement->fetchObject(Task::class, [$user_uuid])){
+        while ($row = $statement->fetchObject(Task::class, [$user_uuid])) {
             $result[] = $row;
         }
         return $result ?: null;
     }
-  
+
     public function getOneTask(string $user_uuid, string $uuid): ?Task
     {
 
@@ -61,7 +61,7 @@ class TaskProvider
             'task_done' => 100
         ]);
         $result = [];
-        while($row = $statement->fetchObject(Task::class, [$user_uuid])){
+        while ($row = $statement->fetchObject(Task::class, [$user_uuid])) {
             $result[] = $row;
         }
         return $result ?: null;
@@ -75,7 +75,8 @@ class TaskProvider
             `task_done` = 1,
             `task_updated` =datetime()
             WHERE `uuid` = :uuid
-        ');
+        '
+        );
         $statement->execute([
             'uuid' => $uuid
         ]);
@@ -90,7 +91,8 @@ class TaskProvider
             `task_done` = 0,
             `task_updated` =datetime()
             WHERE `uuid` = :uuid
-        ');
+        '
+        );
         $statement->execute([
             'uuid' => $uuid
         ]);
@@ -117,7 +119,8 @@ class TaskProvider
                 datetime(), 
                 :task_done
             )
-        ');
+        '
+        );
         $result = $statement->execute([
             'uuid' => $uuid,
             'user_uuid' => $_SESSION['user']->getUuid(),
@@ -141,7 +144,8 @@ class TaskProvider
             `task_updated` = datetime(),
             `task_done` = :task_done
             WHERE `uuid` = :uuid
-        ');
+        '
+        );
         $statement->execute([
             'uuid' => $uuid,
             'task_description' => $newTaskDescription,
@@ -151,5 +155,4 @@ class TaskProvider
         ]);
         return $uuid;
     }
-
 }

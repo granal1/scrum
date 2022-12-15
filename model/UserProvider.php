@@ -7,7 +7,7 @@
 
 use Symfony\Polyfill\Uuid\Uuid;
 
-$pdo = require 'db.php';
+$pdo = require ROOT . '/db.php';
 
 class UserProvider
 {
@@ -58,7 +58,8 @@ class UserProvider
             users_old (`uuid`, `login`, `name`, `password`)
             VALUES
             (:uuid, :new_login, :new_name, :new_password)
-        ');
+        '
+        );
         $statement->execute([
             'uuid' => $newUserUuid,
             'new_login' => $new_login,

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/TaskProvider.php';
+require_once ROOT . '/model/TaskProvider.php';
 
 $username = $_SESSION['user']->getUsername() ?? null;
 
@@ -14,6 +14,6 @@ if ($tasks === null) {
     $_SESSION['tasks'] = $tasks;
 }
 
-include "functions/main.php";
-include "view/index.php";
-include "view/main.php";
+include ROOT . "/functions/main.php";
+include ROOT . "/view/index.php";
+include ROOT . "/view/main.php";

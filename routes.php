@@ -1,7 +1,7 @@
 <?php
 return [
-    'index' => 'controller/IndexController.php',
-    'security' => 'controller/SecurityController.php',
-    'tasks' => 'controller/TasksController.php',
-    'taskCard' => 'controller/TasksCardController.php',
+    'index' => ROOT . '/controller/IndexController.php',
+    'security' => ROOT . '/controller/SecurityController.php',
+    'tasks' => ROOT . '/controller/TasksController.php',
+    'taskCard' => ROOT . '/controller/TasksCardController.php',
 ];

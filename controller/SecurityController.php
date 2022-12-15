@@ -4,8 +4,8 @@
 
 // use granal1\scrum\model\UserProvider;
 
-require_once 'model/UserProvider.php';
-$pdo = require 'db.php';
+require_once ROOT . '/model/UserProvider.php';
+$pdo = require ROOT . '/db.php';
 
 
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
@@ -16,7 +16,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 
 if (isset($_GET['action']) && $_GET['action'] === 'registration') {
     $_GET['action'] = [];
-    include "view/register.php";
+    include ROOT . "/view/register.php";
     die();
 }
 
@@ -48,8 +48,7 @@ if (isset($_POST['new_login'], $_POST['new_name'], $_POST['new_password'])) {
 }
 
 if (isset($_GET['action']) && $_GET['action'] === 'registration') {
-    include "view/register.php";
-}
-else{
-    include "view/signin.php";
+    include ROOT . "/view/register.php";
+} else {
+    include ROOT . "/view/signin.php";
 }
