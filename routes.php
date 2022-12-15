@@ -4,4 +4,5 @@ return [
     'security' => 'controller/SecurityController.php',
     'tasks' => 'controller/TasksController.php',
     'taskCard' => 'controller/TasksCardController.php',
+    'profile' => 'controller/ProfileController.php',
 ];
