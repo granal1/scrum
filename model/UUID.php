@@ -1,15 +1,14 @@
 <?php
 
-namespace granal1\scrum\model;
+namespace app\model;
 
 class UUID
 {
 
     public function __construct(
         private string $uuidString
-    ) 
-    {
-/* Выдает ошибку, если не верный uuid
+    ) {
+        /* Выдает ошибку, если не верный uuid
 
         if (!uuid_is_valid($uuidString)) {
             throw new InvalidArgumentException(
@@ -33,9 +32,9 @@ class UUID
 
     /**
      * Get the value of uuidString
-     */ 
+     */
     public function getUuidString()
     {
-            return $this->uuidString;
+        return $this->uuidString;
     }
 }

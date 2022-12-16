@@ -1,11 +1,11 @@
 <?php
 
+namespace app\controller;
+
+use app\model\TaskProvider;
 use Symfony\Polyfill\Uuid\Uuid;
 
-require_once ROOT . '/model/TaskProvider.php';
-require_once ROOT . '/vendor/symfony/polyfill-uuid/Uuid.php';
-
-$taskProvider = new TaskProvider($pdo);
+$taskProvider = new TaskProvider();
 
 
 if (isset($_POST, $_POST['taskPriority'], $_POST['taskDescription'], $_POST['taskDeadline'])) {

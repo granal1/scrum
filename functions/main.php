@@ -1,4 +1,7 @@
 <?php
+
+namespace app\functions;
+
 function percent(int $percent)
 {
     $round = '<svg
@@ -34,9 +37,9 @@ function percent(int $percent)
             begin="0s"
             values="37; ';
 
-    $round.= 37 - 37/100*$percent;
+    $round .= 37 - 37 / 100 * $percent;
 
-    $round.= '"
+    $round .= '"
             dur="1s"
             repeatCount="1"
             fill="freeze"
@@ -53,11 +56,11 @@ function percent(int $percent)
         xml:space="preserve"
         id="text7">';
 
-    $round .= $percent >= 0 && $percent < 10 ? '  '.$percent : '';
-    $round .= $percent >= 10 && $percent < 100 ? ' '.$percent : '';
+    $round .= $percent >= 0 && $percent < 10 ? '  ' . $percent : '';
+    $round .= $percent >= 10 && $percent < 100 ? ' ' . $percent : '';
     $round .= $percent == 100 ? $percent : '';
 
-    $round.= '
+    $round .= '
     </text>
     </g>
     </svg>';

@@ -1,8 +1,10 @@
 <?php
 
+namespace app\controller;
 
-require_once ROOT . '/model/TaskProvider.php';
-$taskProvider = new TaskProvider($pdo);
+use app\model\TaskProvider;
+
+$taskProvider = new TaskProvider();
 
 //TODO Не работает. Удалить после удаления страницы "Управление задачами". добавление задачи
 if (isset($_POST) && isset($_POST['description']) && isset($_POST['priority'])) {
