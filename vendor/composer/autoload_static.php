@@ -11,6 +11,10 @@ class ComposerStaticInit23a73e429e889fb7cec3025819266850
     );
 
     public static $prefixLengthsPsr4 = array (
+        'g' => 
+        array (
+            'granal1\\scrum\\' => 14,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Uuid\\' => 22,
@@ -18,6 +22,10 @@ class ComposerStaticInit23a73e429e889fb7cec3025819266850
     );
 
     public static $prefixDirsPsr4 = array (
+        'granal1\\scrum\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/',
+        ),
         'Symfony\\Polyfill\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-uuid',
