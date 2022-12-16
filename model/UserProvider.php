@@ -1,21 +1,18 @@
 <?php
 
-//namespace granal1\scrum\model;
+namespace app\model;
 
-//use PDO;
-//use granal1\scrum\model\User;
-
+use app\db\Db;
+use PDO;
 use Symfony\Polyfill\Uuid\Uuid;
-
-$pdo = require ROOT . '/db.php';
 
 class UserProvider
 {
     private PDO $pdo;
 
-    public function __construct(PDO $pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
+        $this->pdo = Db::getDb();
     }
 
     public function getByUsernameAndPassword(string $login, string $password): ?User

@@ -1,16 +1,17 @@
 <?php
 
-use Symfony\Polyfill\Uuid\Uuid;
+namespace app\model;
 
-$pdo = require ROOT . '/db.php';
+use app\db\Db;
+use PDO;
 
 class TaskProvider
 {
     private PDO $pdo;
 
-    public function __construct(PDO $pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
+        $this->pdo = Db::getDb();
     }
 
     public function getAllTasks(string $user_uuid): ?array
