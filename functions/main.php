@@ -64,3 +64,8 @@ function percent(int $percent)
 
     return $round;
 }
+
+function percent2(int $percent)
+{
+  
+}
