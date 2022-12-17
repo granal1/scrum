@@ -9,7 +9,10 @@
         <a class="nav-link" href="/?controller=tasks">Управление Задачами</a>
       </li>
         <li class="nav-item">
-            <a class="nav-link" href="/?controller=profile">Профайл</a>
+            <a class="nav-link" href="/?controller=file_upload">Загрузка файлов</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/?controller=files">Управление файлами</a>
         </li>
       <li class="nav-item">
         <a class="nav-link" href="/?controller=security&action=logout">Выход</a>

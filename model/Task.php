@@ -2,34 +2,34 @@
 
 class Task
 {
-    private string $id;
-    private string $user_id;
+    private string $uuid;
+    private string $user_uuid;
     private string $task_description;
     private string $task_priority;
     private string $task_deadline;   
     private string $task_updated;
     private string $task_done;
 
-    public function __construct(string $user_id) //исправить 
+    public function __construct(string $user_uuid) //исправить 
     {
-        $this->user_id = $user_id;
+        $this->user_uuid = $user_uuid;
     }
 
     
     /**
      * Get the value of id
      */ 
-    public function getId()
+    public function getUuid()
     {
-        return $this->id;
+        return $this->uuid;
     }
 
     /**
      * Get the value of user_id
      */ 
-    public function getUser_id()
+    public function getUser_uuid()
     {
-        return $this->user_id;
+        return $this->user_uuid;
     }
 
     /**

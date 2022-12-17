@@ -42,8 +42,7 @@
     </div>
     <br>
     <p>Например:<br>
-    admin, 123<br>
-    ivan, 123</p>
+    guest, 123</p>
 </div>
 <script src="../bootstrap/bootstrap.min.js"></script>
 </body>

@@ -1,5 +1,12 @@
 <?php
 
+//namespace granal1\scrum\model;
+
+//use PDO;
+//use granal1\scrum\model\User;
+
+use Symfony\Polyfill\Uuid\Uuid;
+
 $pdo = require 'db.php';
 
 class UserProvider
@@ -15,7 +22,7 @@ class UserProvider
     {
         $statement = $this->pdo->prepare(
             'SELECT * 
-            FROM users 
+            FROM users_old 
             WHERE login = :login 
             AND 
             password = :password
@@ -32,7 +39,7 @@ class UserProvider
     {
         $statement = $this->pdo->prepare(
             'SELECT * 
-            FROM users 
+            FROM users_old 
             WHERE login = :login 
             LIMIT 1'
         );
@@ -44,13 +51,16 @@ class UserProvider
 
     public function addNewUser(string $new_login, string $new_name, string $new_password)
     {
+        $newUserUuid = Uuid::uuid_create();
+
         $statement = $this->pdo->prepare(
             'INSERT INTO
-            users (`login`, `name`, `password`)
+            users_old (`uuid`, `login`, `name`, `password`)
             VALUES
-            (:new_login, :new_name, :new_password)
+            (:uuid, :new_login, :new_name, :new_password)
         ');
         $statement->execute([
+            'uuid' => $newUserUuid,
             'new_login' => $new_login,
             'new_name' => $new_name,
             'new_password' => md5($new_password)

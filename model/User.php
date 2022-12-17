@@ -2,7 +2,7 @@
 
 class User
 {
-    private string $id;
+    private string $uuid;
     private string $login;
     private string $name;
     private string $password;
@@ -20,8 +20,8 @@ class User
     /**
      * Get the value of id
      */ 
-    public function getId()
+    public function getUuid()
     {
-        return $this->id;
+        return $this->uuid;
     }
 }
