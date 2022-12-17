@@ -1,6 +1,6 @@
 <h1>Рады вас приветствовать, <?= $username ?></h1>
 
-<a href="/?controller=taskCard" class="btn btn-lg btn-primary mt-1">Добавить задачу</a>
+<a href="/public/?controller=taskCard" class="btn btn-lg btn-primary mt-1">Добавить задачу</a>
 
 <h3>Список незавершенных задач:</h3>
 

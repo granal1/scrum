@@ -2,7 +2,7 @@
 
 // include '../vendor/autoload.php';
 
-require $_SERVER['DOCUMENT_ROOT'] . "/../config/config.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/config/config.php";
 
 require_once ROOT . '/model/User.php';
 require_once ROOT . '/model/Task.php';

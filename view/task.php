@@ -1,39 +1,13 @@
-<!doctype html>
-<html lang="ru">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Задача</title>
-    <link href="../bootstrap/bootstrap.min.css" rel="stylesheet">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
-    <style>
-        .sign-in-form {
-            margin: auto;
-        }
 
-        #username {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-        }
 
-        #password {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-    </style>
-</head>
-
-<body>
     <div class="row col-10 mx-auto row-cols-1 mb-2">
-        <form class="form-control p-3 col" id="task" method="POST" action="">
+        <form class="form-control p-3 col" id="task" method="POST" action="/public/?controller=taskCard">
             <h3>Задание составлено: ...вставить ФИО...</h3>
             <h5 class="mt-3">Последнее изменение сделано: вставить дату изменения</h5>
             <div class="col-md-auto">
                 <h5 class="mt-3">Приоритет: вставить приоритет</h5>
-                <select form="task" class="form-select" name="priority">
+                <select form="task" class="form-select" name="taskPriority">
                     <option value="1">очень низкий</option>
                     <option value="2">низкий</option>
                     <option value="3">средний</option>
@@ -43,7 +17,7 @@
             </div>
             <div class="col-md-auto">
                 <h5 class="mt-3">Срок выполнения до: вставить дедлайн</h5>
-                <input form="task" class="form-control" type="date" id="date" name="date" />
+                <input form="task" class="form-control" type="date" id="taskDeadline" name="taskDeadline" />
             </div>
             <div class="col-md-auto">
                 <h5 class="mt-3">Исполнителем назначен: ...вставить ФИО...</h5>
@@ -56,8 +30,8 @@
                 </select><br>
             </div>
             <div class="col-md-auto">
-                <label for="description" class="form-label">Описание задания</label><br>
-                <textarea form="task" class="input-group-text col-lg-12" name="description" id="description">текст задания</textarea><br>
+                <label for="taskDescription" class="form-label">Описание задания</label><br>
+                <textarea form="task" class="input-group-text col-lg-12" name="taskDescription" id="taskDescription">текст задания</textarea><br>
             </div>
             <div class="col-md-auto">
                 <h4>Выполнение работ по заданию</h4>
@@ -111,6 +85,4 @@
 
     </div> -->
     <script src="../bootstrap/bootstrap.min.js"></script>
-</body>
 
-</html>
