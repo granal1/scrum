@@ -18,7 +18,7 @@
   <tbody>
 
 <?php foreach ($_SESSION['tasks'] as $key => $task):?>
-    <tr style="cursor: pointer"; onclick="window.location.href='/?controller=taskCard&action=<?=$key?>'; return false">
+    <tr style="cursor: pointer"; onclick="window.location.href='/?controller=taskCard-old&action=<?=$key?>'; return false">
       <td align="center"><?=$task->getTask_priority()?></td>
       <td><?=$task->getTask_description()?></td>
       <td align="center"><?=date('d.m.Y H:i', strtotime($task->getTask_deadline()))?></td> 
