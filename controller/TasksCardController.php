@@ -50,6 +50,6 @@ $taskDescription = isset($task) ? $task->getTask_description() : '';
 $taskDeadline = isset($task) ? $task->getTask_deadline() : '';
 $taskDone = isset($task) ? $task->getTask_Done() : '0';
 
-include "view/index.php";
-include "view/task.php";
-include "view/footer.php";
+include ROOT . "/view/index.php";
+include ROOT . "/view/task.php";
+include ROOT . "/view/footer.php";

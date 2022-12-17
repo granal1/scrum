@@ -16,6 +16,6 @@ if ($tasks === null) {
     $_SESSION['tasks'] = $tasks;
 }
 
-include ROOT . "/functions/main.php";
+require ROOT . "/functions/main.php";
 include ROOT . "/view/index.php";
 include ROOT . "/view/main.php";
