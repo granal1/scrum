@@ -7,7 +7,6 @@ use Symfony\Polyfill\Uuid\Uuid;
 
 $taskProvider = new TaskProvider();
 
-
 if (isset($_POST, $_POST['taskPriority'], $_POST['taskDescription'], $_POST['taskDeadline'])) {
     if (
         $_POST['taskDescription'] != ''

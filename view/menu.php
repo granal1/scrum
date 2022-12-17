@@ -2,22 +2,22 @@
   <div class="container-fluid">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/">Главная</a>
+        <a class="nav-link" href="/public/">Главная</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/?controller=tasks">Управление Задачами</a>
+        <a class="nav-link" href="/public/?controller=tasks">Управление Задачами</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/?controller=file_upload">Загрузка файлов</a>
+        <a class="nav-link" href="/public/?controller=file_upload">Загрузка файлов</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/?controller=files">Управление файлами</a>
+        <a class="nav-link" href="/public/?controller=files">Управление файлами</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/?controller=profile">Профиль</a>
+        <a class="nav-link" href="/public/?controller=profile">Профиль</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/?controller=security&action=logout">Выход</a>
+        <a class="nav-link" href="/public/?controller=security&action=logout">Выход</a>
       </li>
     </ul>
   </div>
