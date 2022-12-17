@@ -2,7 +2,7 @@
 
 
     <div class="row col-10 mx-auto row-cols-1 mb-2">
-        <form class="form-control p-3 col" id="task" method="POST" action="/public/?controller=taskCard">
+        <form class="form-control p-3 col" id="task" method="POST" action="?controller=taskCard">
             <h3>Задание составлено: ...вставить ФИО...</h3>
             <h5 class="mt-3">Последнее изменение сделано: вставить дату изменения</h5>
             <div class="col-md-auto">
