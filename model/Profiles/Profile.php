@@ -1,5 +1,7 @@
 <?php
 
+namespace app\model\Profiles;
+
 class Profile
 {
     private string $uuid;

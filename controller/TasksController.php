@@ -39,5 +39,5 @@ if ($tasks === null) {
     $_SESSION['tasks'] = $tasks;
 }
 
-include "view/index.php";
-include "view/tasks.php";
+include ROOT . "/view/index.php";
+include ROOT . "/view/tasks.php";

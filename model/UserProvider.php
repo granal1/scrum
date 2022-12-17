@@ -3,12 +3,11 @@
 namespace app\model;
 
 use app\db\Db;
-use PDO;
 use Symfony\Polyfill\Uuid\Uuid;
 
 class UserProvider
 {
-    private PDO $pdo;
+    private $pdo;
 
     public function __construct()
     {

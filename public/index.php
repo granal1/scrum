@@ -1,6 +1,6 @@
 <?php
 
-include '../vendor/autoload.php';
+// include '../vendor/autoload.php';
 
 require $_SERVER['DOCUMENT_ROOT'] . "/../config/config.php";
 

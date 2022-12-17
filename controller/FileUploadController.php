@@ -1,10 +1,12 @@
 <?php
 
-require_once 'model/Files/FileUploadProvider.php';
+namespace app\controller;
+
+use app\model\Files\FileUploadProvider;
 
 $username = $_SESSION['user']->getUsername() ?? null;
 
-if(isset($_FILES['files']) && $_FILES['files']['name'][0] != ""){
+if (isset($_FILES['files']) && $_FILES['files']['name'][0] != "") {
 
     $files = $_FILES;
 
@@ -14,16 +16,16 @@ if(isset($_FILES['files']) && $_FILES['files']['name'][0] != ""){
         mkdir($target_dir, 0775, true); // may need 775 ?
     }
 
-    $fileUploadProvider = new FileUploadProvider($pdo);
+    $fileUploadProvider = new FileUploadProvider();
 
     $error = [];
     $message = [];
 
-    for($i = 0; $i < count($files['files']['name']); $i++){
+    for ($i = 0; $i < count($files['files']['name']); $i++) {
 
         $target_file = $target_dir . basename($files['files']["name"][$i]);
 
-        $pdfFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        $pdfFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
         if (file_exists($target_file)) {
             $_SESSION['file_upload_error'] = 'Такой файл ' . $files['files']["name"][$i] . ' уже есть';
@@ -39,7 +41,7 @@ if(isset($_FILES['files']) && $_FILES['files']['name'][0] != ""){
             exit();
         }
 
-        if($pdfFileType != "pdf") {
+        if ($pdfFileType != "pdf") {
             $_SESSION['file_upload_error'] = 'Можно загружать только pdf файлы';
             unset($_FILES['files']);
             header("Location: ?controller=file_upload");
@@ -48,13 +50,13 @@ if(isset($_FILES['files']) && $_FILES['files']['name'][0] != ""){
 
         if (move_uploaded_file($files['files']["tmp_name"][$i], $target_file)) {
             $fileUploadProvider->saveFileData($files['files']["name"][$i], $target_dir);
-            $_SESSION['file_upload_success'] =  htmlspecialchars( basename( $files['files']["name"][$i])). " загружен на сервер";
+            $_SESSION['file_upload_success'] =  htmlspecialchars(basename($files['files']["name"][$i])) . " загружен на сервер";
             unset($_FILES['files']);
         }
     }
 }
 
-include "view/index.php";
-include "view/file_upload.php";
+include ROOT . "/view/index.php";
+include ROOT . "/view/file_upload.php";
 
 exit();

@@ -1,12 +1,14 @@
 <?php
 
-require_once 'model/Files/FileProvider.php';
+namespace app\controller;
+
+use app\model\Files\FileProvider;
 
 $username = $_SESSION['user']->getUsername() ?? null;
 
-$fileProvider = new FileProvider($pdo);
+$fileProvider = new FileProvider();
 
 $files = $fileProvider->getAllFiles();
 
-include "view/index.php";
-include "view/files.php";
+include ROOT . "/view/index.php";
+include ROOT . "/view/files.php";

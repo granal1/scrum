@@ -1,5 +1,7 @@
 <?php
 
+namespace app\model\Files;
+
 class File
 {
     private string $uuid;
@@ -75,5 +77,4 @@ class File
     {
         return $this->sort_order;
     }
-
 }

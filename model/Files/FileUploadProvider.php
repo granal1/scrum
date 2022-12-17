@@ -1,17 +1,18 @@
 <?php
 
-$pdo = require 'db.php';
+namespace app\model\Files;
 
+use app\db\Db;
 use Symfony\Polyfill\Uuid\Uuid;
 
 
 class FileUploadProvider
 {
-    private PDO $pdo;
+    private $pdo;
 
-    public function __construct(PDO $pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
+        $this->pdo = Db::getDb();
     }
 
     public function saveFileData(string $name, string $path)
@@ -30,5 +31,4 @@ class FileUploadProvider
             'path' => $path
         ]);
     }
-
 }

@@ -3,11 +3,10 @@
 namespace app\model;
 
 use app\db\Db;
-use PDO;
 
 class TaskProvider
 {
-    private PDO $pdo;
+    private $pdo;
 
     public function __construct()
     {

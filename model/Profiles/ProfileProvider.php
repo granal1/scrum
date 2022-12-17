@@ -1,14 +1,17 @@
 <?php
 
-$pdo = require 'db.php';
+namespace app\model\Profiles;
+
+use app\db\Db;
+use app\model\Task;
 
 class ProfileProvider
 {
-    private PDO $pdo;
+    private $pdo;
 
-    public function __construct(PDO $pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
+        $this->pdo = Db::getDb();
     }
 
     public function getAllTasks(string $user_id): ?array
