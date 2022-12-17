@@ -6,5 +6,6 @@ return [
     'taskCard' => 'controller/TasksCardController.php',
     'file_upload' => 'controller/FileUploadController.php',
     'files' => 'controller/FileController.php',
+    'profile' => 'controller/ProfileController.php',
 
 ];
