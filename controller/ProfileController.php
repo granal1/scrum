@@ -1,6 +1,6 @@
 <?php
 
-//require_once 'model/ProfileProvider.php';
+namespace app\controller;
 
 $username = $_SESSION['user']->getUsername() ?? null;
 
@@ -15,5 +15,5 @@ if ($profile === null) {
     $_SESSION['profile'] = $profile;
 }
 
-include "view/index.php";
-include "view/profile.php";
+include ROOT . "/view/index.php";
+include ROOT . "/view/profile.php";

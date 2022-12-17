@@ -1,16 +1,16 @@
 <?php
 
-$pdo = require 'db.php';
+namespace app\model\Files;
 
-require_once 'model/Files/File.php';
+use app\db\Db;
 
 class FileProvider
 {
-    private PDO $pdo;
+    private $pdo;
 
-    public function __construct(PDO $pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
+        $this->pdo = Db::getDb();
     }
 
     public function getAllFiles(): ?array
@@ -20,15 +20,13 @@ class FileProvider
             FROM `files`'
         );
 
-        $statement->execute([
-        ]);
+        $statement->execute([]);
 
         $result = [];
 
-        while($row = $statement->fetchObject(File::class, [])){
+        while ($row = $statement->fetchObject(File::class, [])) {
             $result[] = $row;
         }
         return $result ?: null;
     }
-
 }

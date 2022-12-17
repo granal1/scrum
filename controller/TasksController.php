@@ -1,12 +1,14 @@
 <?php
 
+namespace app\controller;
 
-require_once 'model/TaskProvider.php';
-$taskProvider = new TaskProvider($pdo);
+use app\model\TaskProvider;
+
+$taskProvider = new TaskProvider();
 
 //TODO Не работает. Удалить после удаления страницы "Управление задачами". добавление задачи
-if (isset($_POST) && isset($_POST['description']) && isset($_POST['priority'])){
-    if ($_POST['description'] != '' && $_POST['priority'] != ''){
+if (isset($_POST) && isset($_POST['description']) && isset($_POST['priority'])) {
+    if ($_POST['description'] != '' && $_POST['priority'] != '') {
         $newDescription = htmlspecialchars(strip_tags($_POST['description']));
         $newpriority = htmlspecialchars(strip_tags($_POST['priority']));
         $add = $taskProvider->addTask($newDescription, $newpriority); // Метод изменился.
@@ -16,14 +18,14 @@ if (isset($_POST) && isset($_POST['description']) && isset($_POST['priority'])){
 }
 
 //отметить выполненной
-if (isset($_GET['action']) && $_GET['action']==='done'){
+if (isset($_GET['action']) && $_GET['action'] === 'done') {
     $done = $taskProvider->setIsDone($_SESSION['tasks'][$_GET['key']]->getId());
     header("Location:/?controller=tasks");
     die();
 }
 
 //отметить невыполненной
-if (isset($_GET['action']) && $_GET['action']==='undone'){
+if (isset($_GET['action']) && $_GET['action'] === 'undone') {
     $done = $taskProvider->setUnDone($_SESSION['tasks'][$_GET['key']]->getId());
     header("Location:/?controller=tasks");
     die();
@@ -37,5 +39,5 @@ if ($tasks === null) {
     $_SESSION['tasks'] = $tasks;
 }
 
-include "view/index.php";
-include "view/tasks.php";
+include ROOT . "/view/index.php";
+include ROOT . "/view/tasks.php";

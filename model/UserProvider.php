@@ -1,21 +1,17 @@
 <?php
 
-//namespace granal1\scrum\model;
+namespace app\model;
 
-//use PDO;
-//use granal1\scrum\model\User;
-
+use app\db\Db;
 use Symfony\Polyfill\Uuid\Uuid;
-
-$pdo = require 'db.php';
 
 class UserProvider
 {
-    private PDO $pdo;
+    private $pdo;
 
-    public function __construct(PDO $pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
+        $this->pdo = Db::getDb();
     }
 
     public function getByUsernameAndPassword(string $login, string $password): ?User
@@ -58,7 +54,8 @@ class UserProvider
             users_old (`uuid`, `login`, `name`, `password`)
             VALUES
             (:uuid, :new_login, :new_name, :new_password)
-        ');
+        '
+        );
         $statement->execute([
             'uuid' => $newUserUuid,
             'new_login' => $new_login,

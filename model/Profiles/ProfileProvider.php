@@ -1,14 +1,17 @@
 <?php
 
-$pdo = require 'db.php';
+namespace app\model\Profiles;
+
+use app\db\Db;
+use app\model\Task;
 
 class ProfileProvider
 {
-    private PDO $pdo;
+    private $pdo;
 
-    public function __construct(PDO $pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
+        $this->pdo = Db::getDb();
     }
 
     public function getAllTasks(string $user_id): ?array
@@ -22,12 +25,12 @@ class ProfileProvider
             'user_id' => $user_id
         ]);
         $result = [];
-        while($row = $statement->fetchObject(Task::class, [$user_id])){
+        while ($row = $statement->fetchObject(Task::class, [$user_id])) {
             $result[] = $row;
         }
         return $result ?: null;
     }
-  
+
     public function getOneTask(string $user_id, string $id): ?Task
     {
         $statement = $this->pdo->prepare(
@@ -57,7 +60,7 @@ class ProfileProvider
             'task_done' => 100
         ]);
         $result = [];
-        while($row = $statement->fetchObject(Task::class, [$user_id])){
+        while ($row = $statement->fetchObject(Task::class, [$user_id])) {
             $result[] = $row;
         }
         return $result ?: null;
@@ -71,7 +74,8 @@ class ProfileProvider
             `task_done` = 1,
             `task_updated` =datetime()
             WHERE `id` = :id
-        ');
+        '
+        );
         $statement->execute([
             'id' => $id
         ]);
@@ -86,7 +90,8 @@ class ProfileProvider
             `task_done` = 0,
             `task_updated` =datetime()
             WHERE `id` = :id
-        ');
+        '
+        );
         $statement->execute([
             'id' => $id
         ]);
@@ -100,7 +105,8 @@ class ProfileProvider
             tasks (`user_id`, `task_description`, `task_priority`, `task_deadline`,`task_updated`, `task_done`)
             VALUES
             (:user_id, :task_description, :task_priority, :task_deadline, datetime(), :task_done)
-        ');
+        '
+        );
         $result = $statement->execute([
             'user_id' => $_SESSION['user']->getId(),
             'task_description' => $newTaskDescription,
@@ -123,7 +129,8 @@ class ProfileProvider
             `task_updated` = datetime(),
             `task_done` = :task_done
             WHERE `id` = :id
-        ');
+        '
+        );
         $statement->execute([
             'id' => $id,
             'task_description' => $newTaskDescription,
@@ -133,5 +140,4 @@ class ProfileProvider
         ]);
         return $id;
     }
-
 }

@@ -1,5 +1,7 @@
 <?php
 
+namespace app\model;
+
 class User
 {
     private string $uuid;
@@ -19,7 +21,7 @@ class User
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getUuid()
     {
         return $this->uuid;
