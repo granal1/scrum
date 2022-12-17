@@ -3,6 +3,7 @@
 namespace app\controller;
 
 use app\model\TaskProvider;
+use Symfony\Polyfill\Uuid\Uuid;
 
 $taskProvider = new TaskProvider();
 
@@ -10,9 +11,10 @@ $taskProvider = new TaskProvider();
 if (isset($_POST) && isset($_POST['description']) && isset($_POST['priority'])) {
     if ($_POST['description'] != '' && $_POST['priority'] != '') {
         $newDescription = htmlspecialchars(strip_tags($_POST['description']));
-        $newpriority = htmlspecialchars(strip_tags($_POST['priority']));
-        $add = $taskProvider->addTask($newDescription, $newpriority); // Метод изменился.
-        header("Location:/?controller=tasks");
+        $newPriority = htmlspecialchars(strip_tags($_POST['priority']));
+        $newUuid = Uuid::uuid_create();
+        $add = $taskProvider->setAddTask($newUuid, $newDescription, $newPriority, '', ''); // Метод изменился.
+        header("Location:/public/?controller=tasks");
         die();
     }
 }

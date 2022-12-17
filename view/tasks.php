@@ -12,7 +12,7 @@
     </thead>
     <tbody>
 
-      <form action="/?controller=tasks" method="POST">
+      <form action="/public/?controller=tasks" method="POST">
         <tr valign="middle">
           <td></td>
           <td><input type="number" class="form-control" id="priority" placeholder="Приоритет задачи" name="priority"></td>
