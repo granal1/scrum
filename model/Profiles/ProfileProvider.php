@@ -1,10 +1,11 @@
 <?php
 
-namespace app\model;
+namespace app\model\Profiles;
 
 use app\db\Db;
+use app\model\Task;
 
-class TaskProvider
+class ProfileProvider
 {
     private $pdo;
 
@@ -13,146 +14,130 @@ class TaskProvider
         $this->pdo = Db::getDb();
     }
 
-    public function getAllTasks(string $user_uuid): ?array
+    public function getAllTasks(string $user_id): ?array
     {
         $statement = $this->pdo->prepare(
             'SELECT * 
-            FROM `tasks_old` 
-            WHERE user_uuid = :user_uuid'
+            FROM `tasks` 
+            WHERE user_id = :user_id'
         );
         $statement->execute([
-            'user_uuid' => $user_uuid
+            'user_id' => $user_id
         ]);
         $result = [];
-        while ($row = $statement->fetchObject(Task::class, [$user_uuid])) {
+        while ($row = $statement->fetchObject(Task::class, [$user_id])) {
             $result[] = $row;
         }
         return $result ?: null;
     }
 
-    public function getOneTask(string $user_uuid, string $uuid): ?Task
+    public function getOneTask(string $user_id, string $id): ?Task
     {
-
-
         $statement = $this->pdo->prepare(
             'SELECT * 
-            FROM tasks_old 
-            WHERE `user_uuid` = :user_uuid
-            AND `uuid` = :uuid'
+            FROM tasks 
+            WHERE `user_id` = :user_id
+            AND `id` = :id'
         );
         $statement->execute([
-            'user_uuid' => $user_uuid,
-            'uuid' => $uuid
+            'user_id' => $user_id,
+            'id' => $id
         ]);
-        $result = $statement->fetchObject(Task::class, [$user_uuid]);
+        $result = $statement->fetchObject(Task::class, [$user_id]);
         return $result ?: null;
     }
 
-    public function getUndoneTasks(string $user_uuid): ?array
+    public function getUndoneTasks(string $user_id): ?array
     {
         $statement = $this->pdo->prepare(
             'SELECT * 
-            FROM tasks_old 
-            WHERE `user_uuid` = :user_uuid
+            FROM tasks 
+            WHERE `user_id` = :user_id
             AND `task_done` < :task_done'
         );
         $statement->execute([
-            'user_uuid' => $user_uuid,
+            'user_id' => $user_id,
             'task_done' => 100
         ]);
         $result = [];
-        while ($row = $statement->fetchObject(Task::class, [$user_uuid])) {
+        while ($row = $statement->fetchObject(Task::class, [$user_id])) {
             $result[] = $row;
         }
         return $result ?: null;
     }
 
-    public function setIsDone(string $uuid)
+    public function setIsDone(string $id)
     {
         $statement = $this->pdo->prepare(
-            'UPDATE tasks_old
+            'UPDATE tasks
             SET 
             `task_done` = 1,
             `task_updated` =datetime()
-            WHERE `uuid` = :uuid
+            WHERE `id` = :id
         '
         );
         $statement->execute([
-            'uuid' => $uuid
+            'id' => $id
         ]);
         return $statement;
     }
 
-    public function setUnDone(string $uuid)
+    public function setUnDone(string $id)
     {
         $statement = $this->pdo->prepare(
-            'UPDATE tasks_old
+            'UPDATE tasks
             SET 
             `task_done` = 0,
             `task_updated` =datetime()
-            WHERE `uuid` = :uuid
+            WHERE `id` = :id
         '
         );
         $statement->execute([
-            'uuid' => $uuid
+            'id' => $id
         ]);
         return $statement;
     }
 
-    public function setAddTask(string $uuid, string $newTaskDescription, string $newTaskPriority, string $newTaskDeadline, string $newTaskDone)
+    public function setAddTask(string $newTaskDescription, string $newTaskPriority, string $newTaskDeadline, string $newTaskDone)
     {
         $statement = $this->pdo->prepare(
             'INSERT INTO
-            tasks_old (`uuid`, 
-                    `user_uuid`, 
-                    `task_description`, 
-                    `task_priority`, 
-                    `task_deadline`,
-                    `task_updated`, 
-                    `task_done`
-                )
-            VALUES (:uuid, 
-                :user_uuid, 
-                :task_description, 
-                :task_priority, 
-                :task_deadline, 
-                datetime(), 
-                :task_done
-            )
+            tasks (`user_id`, `task_description`, `task_priority`, `task_deadline`,`task_updated`, `task_done`)
+            VALUES
+            (:user_id, :task_description, :task_priority, :task_deadline, datetime(), :task_done)
         '
         );
         $result = $statement->execute([
-            'uuid' => $uuid,
-            'user_uuid' => $_SESSION['user']->getUuid(),
+            'user_id' => $_SESSION['user']->getId(),
             'task_description' => $newTaskDescription,
             'task_priority' => $newTaskPriority,
             'task_deadline' => $newTaskDeadline,
             'task_done' => $newTaskDone
         ]);
-        $lastUuid = $uuid;
-        return $lastUuid;
+        $lastId = $this->pdo->lastInsertId();
+        return $lastId;
     }
 
-    public function setUpdateTask(string $uuid, string $newTaskDescription, string $newTaskPriority, string $newTaskDeadline, string $newTaskDone)
+    public function setUpdateTask(string $id, string $newTaskDescription, string $newTaskPriority, string $newTaskDeadline, string $newTaskDone)
     {
         $statement = $this->pdo->prepare(
-            'UPDATE tasks_old
+            'UPDATE tasks
             SET 
             `task_description` = :task_description,
             `task_priority` = :task_priority,
             `task_deadline` = :task_deadline,
             `task_updated` = datetime(),
             `task_done` = :task_done
-            WHERE `uuid` = :uuid
+            WHERE `id` = :id
         '
         );
         $statement->execute([
-            'uuid' => $uuid,
+            'id' => $id,
             'task_description' => $newTaskDescription,
             'task_priority' => $newTaskPriority,
             'task_deadline' => $newTaskDeadline,
             'task_done' => $newTaskDone
         ]);
-        return $uuid;
+        return $id;
     }
 }

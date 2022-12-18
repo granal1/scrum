@@ -1,12 +1,14 @@
 <?php
 
-require_once 'model/TaskProvider.php';
+namespace app\controller;
+
+use app\model\TaskProvider;
 
 $username = $_SESSION['user']->getUsername() ?? null;
 
 //получение незавершенных задач
-$taskProvider = new TaskProvider($pdo);
-$tasks = $taskProvider->getUndoneTasks($_SESSION['user']->getId());
+$taskProvider = new TaskProvider();
+$tasks = $taskProvider->getUndoneTasks($_SESSION['user']->getUuid());
 
 if ($tasks === null) {
     $_SESSION['tasks'] = [];
@@ -14,6 +16,6 @@ if ($tasks === null) {
     $_SESSION['tasks'] = $tasks;
 }
 
-include "functions/main.php";
-include "view/index.php";
-include "view/main.php";
+require ROOT . "/functions/main.php";
+include ROOT . "/view/index.php";
+include ROOT . "/view/main.php";

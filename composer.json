@@ -1,0 +1,19 @@
+{
+    "name": "granal1/scrum",
+    "description": "educational project",
+    "type": "project",
+    "authors": [
+        {
+            "name": "GB-scrum-comand"
+        }
+    ],
+    "require": {
+        "symfony/polyfill-uuid": "^1.27",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": ""
+        }
+    }
+}

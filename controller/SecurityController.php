@@ -1,6 +1,8 @@
 <?php
-require_once 'model/UserProvider.php';
-$pdo = require 'db.php';
+
+namespace app\controller;
+
+use \app\model\UserProvider;
 
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     session_destroy();
@@ -10,14 +12,14 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 
 if (isset($_GET['action']) && $_GET['action'] === 'registration') {
     $_GET['action'] = [];
-    include "view/register.php";
+    include ROOT . "/view/register.php";
     die();
 }
 
 $error = null;
 if (isset($_POST['login'], $_POST['password'])) {
     ['login' => $login, 'password' => $password] = $_POST;
-    $userProvider = new UserProvider($pdo);
+    $userProvider = new UserProvider();
     $user = $userProvider->getByUsernameAndPassword($login, $password);
     if ($user === null) {
         $error = 'Пользователь с указанными учетными данными не найден';
@@ -30,7 +32,7 @@ if (isset($_POST['login'], $_POST['password'])) {
 
 if (isset($_POST['new_login'], $_POST['new_name'], $_POST['new_password'])) {
     ['new_login' => $new_login, 'new_name' => $new_name, 'new_password' => $new_password] = $_POST;
-    $userProvider = new UserProvider($pdo);
+    $userProvider = new UserProvider();
     $user = $userProvider->getByLogin($new_login);
     if ($user != null) {
         $error = '"Этот логин уже занят"';
@@ -42,8 +44,7 @@ if (isset($_POST['new_login'], $_POST['new_name'], $_POST['new_password'])) {
 }
 
 if (isset($_GET['action']) && $_GET['action'] === 'registration') {
-    include "view/register.php";
-}
-else{
-    include "view/signin.php";
+    include ROOT . "/view/register.php";
+} else {
+    include ROOT . "/view/signin.php";
 }

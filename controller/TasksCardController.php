@@ -1,42 +1,46 @@
 <?php
 
-require_once 'model/TaskProvider.php';
-$taskProvider = new TaskProvider($pdo);
+namespace app\controller;
 
+use app\model\TaskProvider;
+use Symfony\Polyfill\Uuid\Uuid;
 
-if (isset($_POST, $_POST['taskPriority'], $_POST['taskDescription'], $_POST['taskDeadline'])){
-    if ($_POST['taskDescription'] != '' 
-        && $_POST['taskPriority'] != '' 
+$taskProvider = new TaskProvider();
+
+if (isset($_POST, $_POST['taskPriority'], $_POST['taskDescription'], $_POST['taskDeadline'])) {
+    if (
+        $_POST['taskDescription'] != ''
+        && $_POST['taskPriority'] != ''
         && $_POST['taskDeadline'] != ''
-        && $_POST['taskDone'] != ''){
+        && $_POST['taskDone'] != ''
+    ) {
+
+        $newTaskUuid = Uuid::uuid_create();
         $newTaskDescription = htmlspecialchars(strip_tags($_POST['taskDescription']));
         $newTaskPriority = htmlspecialchars(strip_tags($_POST['taskPriority']));
         $newTaskDeadline = htmlspecialchars(strip_tags($_POST['taskDeadline']));
         $newTaskDone = $_POST['taskDone'];
-        
-        if (isset($_SESSION['taskId'])){
-            $inbase = $taskProvider->setUpdateTask($_SESSION['taskId'], $newTaskDescription, $newTaskPriority, $newTaskDeadline, $newTaskDone);
+
+        if (isset($_SESSION['taskUuid'])) {
+            $inbase = $taskProvider->setUpdateTask($_SESSION['taskUuid'], $newTaskDescription, $newTaskPriority, $newTaskDeadline, $newTaskDone);
+        } else {
+            $inbase = $taskProvider->setAddTask($newTaskUuid, $newTaskDescription, $newTaskPriority, $newTaskDeadline, $newTaskDone);
         }
-        else{
-            $inbase = $taskProvider->setAddTask($newTaskDescription, $newTaskPriority, $newTaskDeadline, $newTaskDone);
-        }
-        unset($_SESSION['taskId']);
-        if(isset($inbase)){
+        unset($_SESSION['taskUuid']);
+        if (isset($inbase)) {
             $message = 'Сохранено';
-            $task = $taskProvider->getOneTask($_SESSION['user']->getId(), $inbase);
-            $_SESSION['taskId'] = isset($task) ? $task->getId() : '';
+            $task = $taskProvider->getOneTask($_SESSION['user']->getUuid(), $inbase);
+            $_SESSION['taskUuid'] = isset($task) ? $task->getUuid() : '';
         }
     }
-}
-else{
-    unset($_SESSION['taskId']);
+} else {
+    unset($_SESSION['taskUuid']);
 }
 
-if (isset($_GET, $_GET['action'])){
-    $taskId = $_SESSION['tasks'][$_GET['action']]->getId();
-
-    $task = $taskProvider->getOneTask($_SESSION['user']->getId(), $taskId);
-    $_SESSION['taskId'] = isset($task) ? $task->getId() : '';
+if (isset($_GET, $_GET['action'])) {
+    $taskUuid = $_SESSION['tasks'][$_GET['action']]->getUuid();
+    $task = $taskProvider->getOneTask($_SESSION['user']->getUuid(), $taskUuid);
+    $_SESSION['taskUuid'] = isset($task) ? $task->getUuid() : '';
 }
 
 $message = $message ?? '';
@@ -45,6 +49,6 @@ $taskDescription = isset($task) ? $task->getTask_description() : '';
 $taskDeadline = isset($task) ? $task->getTask_deadline() : '';
 $taskDone = isset($task) ? $task->getTask_Done() : '0';
 
-include "view/index.php";
-include "view/task.php";
-include "view/footer.php";
+include ROOT . "/view/index.php";
+include ROOT . "/view/task.php";
+include ROOT . "/view/footer.php";
