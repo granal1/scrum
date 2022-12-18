@@ -1,14 +1,4 @@
-<!doctype html>
-<html lang="ru">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Профиль</title>
-    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
     <div class="container-fluid d-flex align-items-center pt-3 pt-lg-0 pb-5 pb-lg-0">
         <div class="container pb-4">
             <form class="" method="post" action="" enctype="multipart/form-data">
@@ -73,7 +63,4 @@
             </form>
         </div>
     </div>
-    <script src="/bootstrap/bootstrap.min.js"></script>
-</body>
-
-</html>
+    <script src="bootstrap/bootstrap.min.js"></script>

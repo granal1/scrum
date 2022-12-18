@@ -19,3 +19,4 @@ if ($tasks === null) {
 require ROOT . "/functions/main.php";
 include ROOT . "/view/index.php";
 include ROOT . "/view/main.php";
+include ROOT . "/view/footer.php";

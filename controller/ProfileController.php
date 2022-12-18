@@ -17,3 +17,4 @@ if ($profile === null) {
 
 include ROOT . "/view/index.php";
 include ROOT . "/view/profile.php";
+include ROOT . "/view/footer.php";

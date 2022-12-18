@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Авторизация</title>
-    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
     <style>
         .sign-in-form {
             margin: auto;
@@ -44,7 +44,7 @@
         <p>Например:<br>
             guest, 123</p>
     </div>
-    <script src="/bootstrap/bootstrap.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
 </body>
 
 </html>

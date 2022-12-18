@@ -84,5 +84,5 @@
 
 
     </div> -->
-    <script src="/bootstrap/bootstrap.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
 
