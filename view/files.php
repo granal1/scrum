@@ -1,14 +1,4 @@
-<!doctype html>
-<html lang="ru">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Профиль</title>
-    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
     <div class="container-fluid d-flex align-items-center pt-3 pt-lg-0 pb-5 pb-lg-0">
         <div class="container pb-4">
             <h4>Файлы</h4>
@@ -28,7 +18,7 @@
                                 <th><?php echo $file->getUuid(); ?></th>
                                 <td><?php echo $file->getCreatedAt(); ?></td>
                                 <td><?php echo $file->getPath(); ?></td>
-                                <td><a target="_blank" href="<?php echo $file->getPath() . $file->getName() ?>"><?php echo $file->getName(); ?></a></td>
+                                <td><a target="_blank" href="<?php echo $file->getPath(); ?>"><?php echo $file->getName(); ?></a></td>
                             </tr>
                         <?php } ?>
                     <?php } else { ?>
@@ -40,7 +30,5 @@
             </table>
         </div>
     </div>
-    <script src="../bootstrap/bootstrap.min.js"></script>
-</body>
+    <script src="/bootstrap/bootstrap.min.js"></script>
 
-</html>
