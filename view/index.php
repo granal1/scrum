@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-
+<!DOCTYPE HTML>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Задачи</title>

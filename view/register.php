@@ -1,3 +1,5 @@
+<!DOCTYPE HTML>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,5 +49,6 @@
         </div>
         <br>
     </div>
-    <script src="../bootstrap/bootstrap.min.js"></script>
+    <script src="/bootstrap/bootstrap.min.js"></script>
 </body>
+</html>
