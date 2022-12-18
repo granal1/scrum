@@ -12,3 +12,6 @@ $files = $fileProvider->getAllFiles();
 
 include ROOT . "/view/index.php";
 include ROOT . "/view/files.php";
+include ROOT . "/view/footer.php";
+
+exit();

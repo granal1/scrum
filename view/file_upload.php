@@ -1,14 +1,4 @@
-<!doctype html>
-<html lang="ru">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Профиль</title>
-    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
     <div class="container-fluid d-flex align-items-center pt-3 pt-lg-0 pb-5 pb-lg-0">
         <div class="container pb-4">
             <form class="" method="post" action="?controller=file_upload" enctype="multipart/form-data">
@@ -34,6 +24,12 @@
                         <input required accept=".pdf" class="form-control form-control-sm" type="file" multiple id="files" name="files[]">
                     </div>
                 </div>
+                <div class="mb-3">
+                    <div class="col-11 col-xs-10 col-sm-10 col-md-10 mx-auto">
+                        <label for="new_name">Новое имя файла или оставьте пустым</label>
+                        <input placeholder="Имя" class="form-control form-control-sm" type="text" id="new_name" name="new_name">
+                    </div>
+                </div>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-between col-11 mx-auto col-sm-10">
                     <button class="btn btn-sm btn-danger col-sm-3" type="submit">Сохранить</button>
                     <button onClick="history.back()" class=" btn btn-sm btn-success col-sm-3" type="button">Назад</button>
@@ -42,7 +38,5 @@
             </form>
         </div>
     </div>
-    <script src="../bootstrap/bootstrap.min.js"></script>
-</body>
+    <script src="/bootstrap/bootstrap.min.js"></script>
 
-</html>
