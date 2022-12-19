@@ -6,6 +6,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/../config/config.php";
 
 require_once ROOT . '/model/User.php';
 require_once ROOT . '/model/Task.php';
+require_once ROOT . '/model/Pagination.php';
 session_start();
 
 $controller = $_GET['controller'] ?? 'index';

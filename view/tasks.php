@@ -35,6 +35,19 @@
 
     </tbody>
   </table>
+    <?php if($_SESSION['pagination']) : ?>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <?php foreach ($_SESSION['pagination'] as $item) : ?>
+            <?php if (isset($_GET['page']) && $_GET['page'] == $item) :?>
+            <li class="page-item active"><a class="page-link" href="/?controller=tasks&action=getAllTasks&page=<?=$item?>"><?=$item?></a></li>
+          <?php else :?>
+                <li class="page-item"><a class="page-link" href="/?controller=tasks&action=getAllTasks&page=<?=$item?>"><?=$item?></a></li>
+                <?php endif;?>
+            <?php endforeach; ?>
+        </ul>
+    </nav>
+    <?php endif; ?>
 </div>
 
 <?php include "footer.php" ?>
