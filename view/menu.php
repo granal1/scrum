@@ -4,9 +4,11 @@
       <li class="nav-item">
         <a class="nav-link" href="/">Главная</a>
       </li>
+<!--
       <li class="nav-item">
         <a class="nav-link" href="?controller=tasks&action=getAllTasks&page=1">Управление Задачами</a>
       </li>
+-->
       <li class="nav-item">
         <a class="nav-link" href="?controller=file_upload">Загрузка файлов</a>
       </li>
