@@ -50,5 +50,5 @@ $taskDeadline = isset($task) ? $task->getTask_deadline() : '';
 $taskDone = isset($task) ? $task->getTask_Done() : '0';
 
 include ROOT . "/view/index.php";
-include ROOT . "/view/task.php";
+include ROOT . "/view/task-old.php";
 include ROOT . "/view/footer.php";

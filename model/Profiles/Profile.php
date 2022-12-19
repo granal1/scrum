@@ -1,37 +1,37 @@
 <?php
 
-namespace app\model;
+namespace app\model\Profiles;
 
-class Task
+class Profile
 {
     private string $uuid;
-    private string $user_uuid;
+    private string $user_id;
     private string $task_description;
     private string $task_priority;
     private string $task_deadline;
     private string $task_updated;
     private string $task_done;
 
-    public function __construct(string $user_uuid) //исправить 
+    public function __construct(string $user_id) //исправить 
     {
-        $this->user_uuid = $user_uuid;
+        $this->user_id = $user_id;
     }
 
 
     /**
      * Get the value of id
      */
-    public function getUuid()
+    public function getId()
     {
-        return $this->uuid;
+        return $this->id;
     }
 
     /**
      * Get the value of user_id
      */
-    public function getUser_uuid()
+    public function getUser_id()
     {
-        return $this->user_uuid;
+        return $this->user_id;
     }
 
     /**

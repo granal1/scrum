@@ -1,21 +1,24 @@
 <?php
 
-$pdo = require 'db.php';
+namespace app\model;
+
+use app\db\Db;
+use Symfony\Polyfill\Uuid\Uuid;
 
 class UserProvider
 {
-    private PDO $pdo;
+    private $pdo;
 
-    public function __construct(PDO $pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
+        $this->pdo = Db::getDb();
     }
 
     public function getByUsernameAndPassword(string $login, string $password): ?User
     {
         $statement = $this->pdo->prepare(
             'SELECT * 
-            FROM users 
+            FROM users_old 
             WHERE login = :login 
             AND 
             password = :password
@@ -32,7 +35,7 @@ class UserProvider
     {
         $statement = $this->pdo->prepare(
             'SELECT * 
-            FROM users 
+            FROM users_old 
             WHERE login = :login 
             LIMIT 1'
         );
@@ -44,13 +47,17 @@ class UserProvider
 
     public function addNewUser(string $new_login, string $new_name, string $new_password)
     {
+        $newUserUuid = Uuid::uuid_create();
+
         $statement = $this->pdo->prepare(
             'INSERT INTO
-            users (`login`, `name`, `password`)
+            users_old (`uuid`, `login`, `name`, `password`)
             VALUES
-            (:new_login, :new_name, :new_password)
-        ');
+            (:uuid, :new_login, :new_name, :new_password)
+        '
+        );
         $statement->execute([
+            'uuid' => $newUserUuid,
             'new_login' => $new_login,
             'new_name' => $new_name,
             'new_password' => md5($new_password)
